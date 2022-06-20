@@ -1,5 +1,8 @@
 package Xadrez;
 
+import pecas.xadrez.Rei;
+import pecas.xadrez.Torre;
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
 public class PartidaXadrez {
@@ -10,6 +13,7 @@ public class PartidaXadrez {
 	// Construtor
 	public PartidaXadrez() {
 		this.tabuleiro = new Tabuleiro(8, 8); // Essa classe (PartidaXadrez) que deve saber a dimensão do tabuleiro
+		iniciar();
 	}
 	
 	// Métodos personalizados
@@ -22,6 +26,10 @@ public class PartidaXadrez {
 		}
 		return mat;
 	}
-	
+
+	private void iniciar() {
+		tabuleiro.colocarPeca(new Torre(tabuleiro, Cor.BRANCA), new Posicao(2, 1));
+		tabuleiro.colocarPeca(new Rei(tabuleiro, Cor.PRETA), new Posicao(0, 4));
+	}
 	
 }
