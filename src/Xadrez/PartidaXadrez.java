@@ -9,12 +9,25 @@ import tabuleiro.Tabuleiro;
 public class PartidaXadrez {
 	
 	// Atributos
+	private int turno;
+	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	
 	// Construtor
 	public PartidaXadrez() {
 		this.tabuleiro = new Tabuleiro(8, 8); // Essa classe (PartidaXadrez) que deve saber a dimensão do tabuleiro
+		turno = 1;
+		jogadorAtual = Cor.BRANCA;
 		iniciar();
+	}
+	
+	// Métodos especiais
+	public int getTurno() {
+		return turno;
+	}
+	
+	public Cor getJogadorAtual() {
+		return jogadorAtual;
 	}
 	
 	// Métodos personalizados
@@ -40,6 +53,7 @@ public class PartidaXadrez {
 		validarPosicaoOrigem(origem);
 		validarPosicaoDestino(origem, destino);
 		Peca pecaCapturada = fazerMovimento(origem, destino);
+		proximoTurno();
 		return (PecaXadrez)pecaCapturada;
 	}
 	
@@ -54,6 +68,9 @@ public class PartidaXadrez {
 		if (!tabuleiro.temUmaPeca(posicao)) {
 			throw new ExcecaoXadrez("Não existe peça na posição de origem");
 		}
+		if (jogadorAtual != ((PecaXadrez)tabuleiro.peca(posicao)).getCor()) {
+			throw new ExcecaoXadrez("A peca escolhida não é sua");
+		}
 		if (!tabuleiro.peca(posicao).podeMovimentar()) {
 			throw new ExcecaoXadrez("Não é possível mover a peça escolhida");
 		}
@@ -63,6 +80,11 @@ public class PartidaXadrez {
 		if (!tabuleiro.peca(origem).movimentoPossivel(destino)) {
 			throw new ExcecaoXadrez("A peça escolhida não pode ir para a posição de destino");
 		}
+	}
+	
+	private void proximoTurno() {
+		turno++;
+		jogadorAtual = (jogadorAtual == Cor.BRANCA) ? Cor.PRETA : Cor.BRANCA;
 	}
 	
 	private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
