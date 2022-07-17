@@ -16,7 +16,7 @@ public class Torre extends PecaXadrez {
 	// Métodos persoanlizados
 	@Override
 	public String toString() {
-		return "R";
+		return "T";
 	}
 
 	@Override
