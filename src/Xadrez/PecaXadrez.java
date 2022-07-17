@@ -8,6 +8,7 @@ public abstract class PecaXadrez extends Peca {
 	
 	// Atributos
 	private Cor cor;
+	private int contadorMovimento;
 	
 	// Construtor
 	public PecaXadrez(Tabuleiro tabuleiro, Cor cor) {
@@ -22,6 +23,18 @@ public abstract class PecaXadrez extends Peca {
 	// Métodos especiais
 	public Cor getCor() {
 		return cor;
+	}
+	
+	public int getContadorMovimento() {
+		return contadorMovimento;
+	}
+	
+	public void incrementarContadorMovimento() {
+		contadorMovimento++;
+	}
+	
+	public void decrementarContadorMovimento() {
+		contadorMovimento--;
 	}
 
 	// Somente o método get pois não pode deixar a cor ser modificada
