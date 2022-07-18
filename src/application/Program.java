@@ -39,6 +39,12 @@ public class Program {
 				if (pecaCapturada != null) {
 					capturado.add(pecaCapturada);
 				}
+				
+				if (partidaXadrez.getPromocao() != null) {
+					System.out.print("Entre com a peça para promocao (B/C/T/A): ");
+					String tipo = sc.nextLine();
+					partidaXadrez.substituirPecaPromovida(tipo);
+				}
 			}
 			catch (ExcecaoXadrez e) {
 				System.out.println(e.getMessage());
